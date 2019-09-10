@@ -1,7 +1,7 @@
 import random
 
 KREWES = {
-    'orpheus': ['Emily', 'Kevin', 'Vishwaa', 'Eric'],
+    'orpheus': ['Emily', 'Kevin', 'Vishwaa', 'Eric', 'Ray', 'Jesse', 'Tiffany', 'Amanda', 'Junhee', 'Jackie'],
     'rex': ['William', 'Joseph', 'Calvin', 'Ethan'],
     'endymion': ['Grace', 'Nahi', 'Derek', 'Jun Tao']
 }
