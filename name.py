@@ -9,10 +9,12 @@ KREWES = {
 
 #PRECONDITION: team is one of the three team names
 def getName(team):
+    if team != "orpheus" and team != "rex" and team != "endymion":
+        return ""
     return random.choice(KREWES[team])
 
 
-
+print(getName("hdfsaj"))
 print(getName("orpheus"))
 print(getName("orpheus"))
 print(getName("rex"))
