@@ -2,12 +2,14 @@
 
 <html>
   <head>
-    <title> {{ foo }} </title>
+      <title> {{ ti }} </title>
   </head>
   <body>
+    <h1> {{ randJob }} </h1>
+    <br><br><br>
     {% for item in collection %}
       {{ item }}
       <br>
-    {{% endfor %}}
+    {% endfor %}
   </body>
 </html>
