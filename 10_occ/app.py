@@ -7,15 +7,10 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/") #root route for the app to go to if not going to occupations
 def norm():
-    return "normal"
+    return "Visit other page at http://127.0.0.1:5000/occupyflaskft"
 
-coll = [0, 1, 1, 2, 3, 5, 8]
-
-
-def norm():
-    return "Go to other page"
 
 
 #create dictionary based on csv
@@ -49,12 +44,10 @@ def randJob():
 
 @app.route('/occupyflaskft')
 def occs_template():
-    print(randJob())
     return render_template('tmplt.html',
-        ti = 'Occupations',
-        randJob = randJob(),
-        #collection = coll
-        collection = dict
+        ti = 'Occupations', #title for html template
+        randJob = randJob(), #randomly chosen job shown at top
+        collection = dict #for the html to create the list of occupations
 
         )
 
