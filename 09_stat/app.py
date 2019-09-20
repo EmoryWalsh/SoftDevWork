@@ -1,3 +1,8 @@
+#Emory Walsh & Tiffany Cao
+#SoftDev1 pd1
+#K09 -- ’Tis Not a Race -- But You Will Go Faster
+#2019-09-19
+
 from flask import Flask, render_template
 app = Flask(__name__)
 
