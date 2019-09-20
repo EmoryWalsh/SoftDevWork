@@ -53,8 +53,8 @@ def occs_template():
     return render_template('tmplt.html',
         ti = 'Occupations',
         randJob = randJob(),
-        collection = coll
-        #collection = dict
+        #collection = coll
+        collection = dict
 
         )
 
