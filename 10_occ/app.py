@@ -1,22 +1,28 @@
-#Emory Walsh & Tiffany Cao
+#Tiffany Cao & Emory Walsh
 #SoftDev1 pd1
 #K10 -- Jinja Tuning
 #2019-09-20
 
+import random
 from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route("/") #root route for the app to go to if not going to occupations
+#testing for normal route
+@app.route("/")
 def norm():
     return "Visit other page at http://127.0.0.1:5000/occupyflaskft"
 
+coll = [0, 1, 1, 2, 3, 5, 8]
 
-
-#create dictionary based on csv
-dict = {} #initialize a new dictionary structure
-file = open("occupations.csv", "r") #open up csv file for reading purposes
+#setup for reading in the file and creating a dictionary
+dict = {}
+file = open("occupations.csv", "r")
 content = file.readlines() #parse through file by lines
+firstLine = content[0] #take out the first line for table title
+firstLine = firstLine.split(",")
+lastLine = content[len(content) - 1] #take out the last line for table end
+lastLine = lastLine.split(",")
 content = content[1:len(content) - 1] #take out the first and last line
 for line in content:
     line = line.strip() #removes \n
@@ -30,8 +36,7 @@ for line in content:
 #print(dict) #testing results
 file.close()
 
-import random
-
+#a function that gets a random job with the chances based on its percentage
 def randJob():
     list = []
     for key, value in dict.items(): #found this iteration on stack overflow
@@ -40,17 +45,21 @@ def randJob():
     #print(len(list)) #should return 998
     return random.choice(list)
 
-
-
 @app.route('/occupyflaskft')
+
+#sets up html table structure by assigning the variables
 def occs_template():
+    #print(randJob())
     return render_template('tmplt.html',
-        ti = 'Occupations', #title for html template
-        randJob = randJob(), #randomly chosen job shown at top
-        collection = dict #for the html to create the list of occupations
+        ti = "Occupations",
+        randJob = randJob(),
+        tableTitle1 = firstLine[0],
+        tableTitle2 = firstLine[1],
+        collection = dict,
+        tableEnd1 = lastLine[0],
+        tableEnd2 = float(lastLine[1]),
 
         )
-
 
 
 if __name__ == "__main__":

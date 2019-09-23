@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 
 <html>
@@ -5,15 +6,34 @@
       <title> {{ ti }} </title>
   </head>
   <body>
-    <h1>Team Cookies -- Emory Walsh & Tiffany Cao</h1>
-    <br><br>
-    This is a list of occupations and their respective percentages. At the top of the list, you will see a randomly chosen job.
-    <br><br><br>
-    <h2> {{ randJob }} </h2>
-    <br>
-    {% for key in collection %}
-      {{ key }}, {{ collection[key] }}
-      <br>
+    <h1> <p>
+          Cookies -- Tiffany Cao & Emory Walsh <br />
+          SoftDev1 pd1 <br />
+          K10 -- Jinja Tuning <br />
+        </p>
+        </h1>
+    <small>
+      <small>
+    <h2> This webpage creates a table of the many occupations and their percentages. It obtains a random job from the table with the chances of being chosen based on each job's percentage. Refreshing the page will get a new draw.
+    </h2>
+  </small>
+  </small>
+    <h3> <big> <big> <big> <mark> {{ randJob }} </mark> </big> </big> </big> </h3>
+    <table>
+      <tr style="color: blue; ">
+        <td> {{ tableTitle1 }} </td>
+        <td> {{ tableTitle2 }} </td>
+      </tr>
+    {% for key, value in collection.items() %}
+      <tr>
+        <td>{{ key }} </td>
+        <td> {{ value }} </td>
     {% endfor %}
+  </tr>
+  <tr style="color: blue; ">
+    <td> {{ tableEnd1 }} </td>
+    <td> {{ tableEnd2 }} </td>
+  </tr>
+  </table>
   </body>
 </html>
