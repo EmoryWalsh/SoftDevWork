@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 
 <html>
@@ -14,12 +13,12 @@
         </h1>
     <small>
       <small>
-    <h2> This webpage creates a table of the many occupations and their percentages. It obtains a random job from the table with the chances of being chosen based on each job's percentage. Refreshing the page will get a new draw.
+    <h2> This webpage creates a table of the many occupations and their percentages. It obtains a random job from the table with the chances of being chosen based on each job's percentage. Refreshing the page will get a new draw. Each occupation also has a link provided that brings the user to a page with more information on that occupation.
     </h2>
   </small>
   </small>
+    <!--Used https://www.w3schools.com/html/html_formatting.asp for reference in HTML text formatting. -->
     <h3> <big> <big> <big> <mark> {{ randJob }} </mark> </big> </big> </big> </h3>
-
     <!--Used https://www.geeksforgeeks.org/python-using-for-loop-in-flask/ for reference in table structure. -->
     <style type="text/css">
     th:tr{
@@ -35,19 +34,20 @@
     }
 </style>
     <table>
-
-    <table>
-      <tr style="color: blue; ">
+      <tr style="color: blue; "> <!-- changes color of table head text blue -->
         <td> {{ tableTitle1 }} </td>
         <td> {{ tableTitle2 }} </td>
+        <td> {{ linkTitle }} </td>
       </tr>
     {% for key, value in collection.items() %}
       <tr>
         <td>{{ key }} </td>
         <td> {{ value }} </td>
+            <!--Used https://www.w3schools.com/html/html_links.asp for reference in linking. -->
+        <td> <a href= {{linkColl[key]}}> {{ key }} </a> </td>
     {% endfor %}
   </tr>
-  <tr style="color: blue; ">
+  <tr style="color: blue; "> <!--changes color of table end text blue -->
     <td> {{ tableEnd1 }} </td>
     <td> {{ tableEnd2 }} </td>
   </tr>
