@@ -19,45 +19,59 @@ app.secret_key="asdfghjkl"
 #built in username and password
 userN = "mykolyk"
 passW = "?"
+loggedIn = False
 
-#homepage where prompted with log in
+#root
 @app.route("/")
-def start():
-    #print("whyyy")
-    return render_template("temp.html",
-                           header = head)
+def homepage():
+    print("/")
+    print(session)
+    #if 'user' in session:
+    if loggedIn == True:
+        return redirect("/welcome")
+    return render_template("homepageTemp.html",
+                           header=head)
 
-#redirects to login page
-@app.route("/auth")
-def authenticate():
-    #print(url_for('form'))
-    #print(url_for('authenticate'))
-    #print(user)
-    if ("user" in session):
-        return redirect(url_for("start"))
+#welcome if logged in
+@app.route("/welcome")
+def hi():
+    print("/welcome")
+    return render_template("welcomeTemp.html")
 
-#log out page after successful log in
+#tell that logged out
 @app.route("/loggedout")
 def logout():
-    #print("wowow")
+    print("/loggedout")
+    loggedIn = False
+    session.pop('user')
+    session.pop('pass')
     return render_template("logOut.html")
 
-#login - contains three possible routes
-@app.route("/disp_login")
-def login():
+
+#decides if correct credentials
+@app.route("/auth")
+def authenticate():
+    print("/auth")
     session['user'] = request.args['username']
-    session['pass'] =request.args['password']
-    #if accurate
-    if (userN == session['user'] and passW == session['pass']):
-        return render_template("authTemp.html",
-                        username = request.args['username'],
-                        password = request.args['password'])
-    #if username incorrect
-    elif (userN != session['user']):
-        return render_template("errorUser.html")
-    #if password incorrect
+    session['pass'] = request.args['password']
+    if (session['user'] == userN and session['pass'] == passW) :
+        loggedIn = True
+        return redirect ("/welcome")
     else:
-        return render_template("errorPass.html")
+       loggedIn = False
+       return redirect ("/error")
+
+@app.route("/error")
+def errorPath():
+    print("/error")
+    if (userN != session['user']):
+        session.pop("user")
+        session.pop("pass")
+        print("done")
+        return render_template("errorUser.html")
+    session.pop("user")
+    session.pop("pass")
+    return render_template("errorPass.html")
 
 
 if __name__ == "__main__":
