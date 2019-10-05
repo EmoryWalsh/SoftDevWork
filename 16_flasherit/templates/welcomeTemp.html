@@ -1,16 +1,8 @@
-<!DOCTYPE HTML>
+{% extends "formTemp.html" %}
 
-<html>
-  <head>
-      <title> Welcome!! </title>
-  </head>
-  <body>
-    <pre>
-      {{ header }}
-     </pre>
+{% block form %}
     Welcome!<br>
     <form action="/loggedout">
       <input type="submit" value="Log Out">
     </form>
-  </body>
-</html>
+{% endblock %}
