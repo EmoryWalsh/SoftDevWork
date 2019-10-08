@@ -1,7 +1,7 @@
 #Emory Walsh
-#SoftDev
-#k17 --
-#Oct 2019
+#SoftDev pd1
+#k17 -- No Trouble
+#2019-10-10
 
 import sqlite3   #enable control of an sqlite database
 import csv       #facilitate CSV I/O
@@ -15,7 +15,19 @@ c = db.cursor()               #facilitate db ops
 #==========================================================
 
 # < < < INSERT YOUR POPULATE-THE-DB CODE HERE > > >
+sql_create_courses_table = """ CREATE TABLE IF NOT EXISTS courses (
+                                code TEXT, mark INTEGER, id INTEGER
+                            );"""
 
+c.execute(sql_create_courses_table)
+
+with open("courses.csv", 'r') as csvCourses:
+    reader = csv.DictReader(csvCourses)
+    for row in reader:
+        sql_insert_course = str.format("INSERT INTO courses VALUES ('{}', {}, {});", row['code'],  row['mark'], row['id'])
+        print(sql_insert_course)
+        c.execute(sql_insert_course)
+    #print(reader)
 
 command = ""          # test SQL stmt in sqlite3 shell, save as string
 c.execute(command)    # run SQL statement
