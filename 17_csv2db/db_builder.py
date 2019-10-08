@@ -25,12 +25,28 @@ with open("courses.csv", 'r') as csvCourses:
     reader = csv.DictReader(csvCourses)
     for row in reader:
         sql_insert_course = str.format("INSERT INTO courses VALUES ('{}', {}, {});", row['code'],  row['mark'], row['id'])
-        print(sql_insert_course)
+        #print(sql_insert_course)
         c.execute(sql_insert_course)
-    #print(reader)
 
-command = ""          # test SQL stmt in sqlite3 shell, save as string
-c.execute(command)    # run SQL statement
+csvCourses.close()
+
+sql_create_students_table = """ CREATE TABLE IF NOT EXISTS students (
+                                code TEXT, mark INTEGER, id INTEGER
+                            );"""
+
+c.execute(sql_create_students_table)
+
+with open("students.csv", 'r') as csvStudents:
+    reader = csv.DictReader(csvStudents)
+    for row in reader:
+        sql_insert_student = str.format("INSERT INTO students VALUES ('{}', {}, {});", row['name'],  row['age'], row['id'])
+        #print(sql_insert_student)
+        c.execute(sql_insert_student)
+
+csvStudents.close()
+
+#command = ""          # test SQL stmt in sqlite3 shell, save as string
+#c.execute(command)    # run SQL statement
 
 #==========================================================
 
