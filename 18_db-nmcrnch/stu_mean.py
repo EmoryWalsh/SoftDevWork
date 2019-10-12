@@ -50,22 +50,44 @@ csvStudents.close()
 #==========================================================
 #==========================================================
 
-def getID(name):
+def getID(name): #find the id given the name
     find_id = str.format("SELECT id FROM students WHERE name = '{}';", name)
     result = c.execute(find_id)
     return result.fetchone()[0]
 
 #Test Cases
-print(getID('alison')) #10
-print(getID('armin')) #3
+#print(getID('alison')) #10
+#print(getID('armin')) #3
 
-def getName(ID):
-    return 0
+def getName(ID): #find the name given the id
+    find_name = str.format("SELECT name FROM students WHERE id = '{}';", ID)
+    result = c.execute(find_name)
+    return result.fetchone()[0]
 
-def getGrades(name):
-    return 0
+#Test Cases
+#print(getName(10)) #'alison'
+#print(getName(3)) #'armin'
 
+def getGrades(ID): #find grades given ID
+    find_grades = str.format("SELECT mark FROM courses WHERE id = '{}'", ID)
+    result = c.execute(find_grades)
+    return result.fetchall()
 
+#Test Cases
+#print(getGrades(10)) #(85, 80)
+#print(getGrades(3)) #(55, 85)
+
+def average(ID): #averages the grades of student with ID
+    grades = getGrades(ID)
+    sum = 0
+    for grade in grades:
+        sum += grade[0]
+    #print(sum)
+    return sum/len(grades)
+
+#Test Cases
+print(average(10)) #82.5
+print(average(3)) #70
 
 
 
