@@ -86,11 +86,19 @@ def average(ID): #averages the grades of student with ID
     return sum/len(grades)
 
 #Test Cases
-print(average(10)) #82.5
-print(average(3)) #70
+#print(average(10)) #82.5
+#print(average(3)) #70
+
+def studentInfo(ID): #puts all student info into a list in format (ID, Name, Average)
+    info = [ID, getName(ID), average(ID)]
+    return info
+
+#Test Cases
+print(studentInfo(10)) #(10, 'alison', 82.5)
+print(studentInfo(3)) #(3, 'armin', 70)
 
 
-
+#==========================================================
 
 #create a table for the averages
 create_stu_avg_table = """ CREATE TABLE IF NOT EXISTS stu_avg (
@@ -111,6 +119,12 @@ foo = c.execute(q)	#pretend c is a cursor
 #print(foo.fetchall())
 
 #==========================================================
+
+
+
+#==========================================================
+#==========================================================
+
 
 db.commit() #save changes
 db.close()  #close database
