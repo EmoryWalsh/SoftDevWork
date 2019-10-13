@@ -60,7 +60,7 @@ def getID(name): #find the id given the name
 #print(getID('armin')) #3
 
 def getName(ID): #find the name given the id
-    find_name = str.format("SELECT name FROM students WHERE id = '{}';", ID)
+    find_name = str.format("SELECT name FROM students WHERE id = {};", ID)
     result = c.execute(find_name)
     return result.fetchone()[0]
 
@@ -69,7 +69,7 @@ def getName(ID): #find the name given the id
 #print(getName(3)) #'armin'
 
 def getGrades(ID): #find grades given ID
-    find_grades = str.format("SELECT mark FROM courses WHERE id = '{}'", ID)
+    find_grades = str.format("SELECT mark FROM courses WHERE id = {}", ID)
     result = c.execute(find_grades)
     return result.fetchall()
 
@@ -94,31 +94,24 @@ def studentInfo(ID): #puts all student info into a list in format (ID, Name, Ave
     return info
 
 #Test Cases
-print(studentInfo(10)) #(10, 'alison', 82.5)
-print(studentInfo(3)) #(3, 'armin', 70)
+#print(studentInfo(10)) #(10, 'alison', 82.5)
+#print(studentInfo(3)) #(3, 'armin', 70)
 
 
 #==========================================================
 
 #create a table for the averages
-create_stu_avg_table = """ CREATE TABLE IF NOT EXISTS stu_avg (
-                                code TEXT, mark INTEGER, id INTEGER
-                            );"""
-
+create_stu_avg_table = "CREATE TABLE IF NOT EXISTS stu_avg (id INTEGER, avg INTEGER);"
 c.execute(create_stu_avg_table)
 
+ids_list = "SELECT id FROM students"
+result = c.execute(ids_list)
+#print(result.fetchall())
+ids = result.fetchall()
 
-
-
-q = '''SELECT name, students.id, mark
-  FROM students, courses
-  WHERE students.id = courses.id;'''
-
-foo = c.execute(q)	#pretend c is a cursor
-
-#print(foo.fetchall())
-
-#==========================================================
+for id in ids:
+    insert_into_stu_avg = str.format("INSERT INTO stu_avg VALUES ({}, {});", id[0], average(id[0]))
+    c.execute(insert_into_stu_avg)
 
 
 
