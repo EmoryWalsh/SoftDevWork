@@ -27,13 +27,23 @@ def main():
     name = dict["name"]
     country = dict["country_id"]
 
+    url = urlopen("https://www.metaweather.com/api/location/search/?query=london")
+    data = url.read()
+    dict = json.loads(data)
+    place = dict[0]["title"]
+    type = dict[0]["location_type"]
+    latlong = dict[0]["latt_long"]
+
     return render_template("tmplt.html",
                             artist = artist,
                             artwork = artwork,
                             year = year,
                             count = count,
                             name = name,
-                            country = country)
+                            country = country,
+                            place = place,
+                            type = type,
+                            latlong = latlong)
 
 #main
 if __name__ == "__main__":
