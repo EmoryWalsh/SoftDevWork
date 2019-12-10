@@ -58,4 +58,6 @@ var randStudent = function(){
     return(list[rand]);
 }
 
-randStudent()
+console.log(randStudent())
+console.log(randStudent())
+console.log(randStudent())
