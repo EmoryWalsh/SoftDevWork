@@ -27,27 +27,27 @@ var gcd = function (a,b){
     return gcd(b, a % b);
 }
 
+
+list = ['Emory', 'Joeseph', 'Bob', 'Jane', 'Mary']
+
 var randStudent = function (list){
 	return list[Math.floor(Math.random()*list.length)];
 }
 
+
 //////////////////////////////////////////////////////////////////
 
-  var factorialDOM = document.getElementById("fact");
-  //console.log("here");
-  if(factorialDOM){
-    console.log("Hi");
-    factorialDOM.addEventListener('click', function(){
+  var factorialDOM = document.getElementById('factorial');
+  factorialDOM.addEventListener('click', function() {
     var num = fact(5);
     console.log(num);
   });
-};
 
 
 
-var fibDOM = document.getElementById("fib");
+var fibDOM = document.getElementById('fib');
 if(fibDOM){
-  console.log("hola");
+  //console.log("hola");
   fibDOM.addEventListener('click', function(){
     var result = fib(5);
     console.log(result);
@@ -56,22 +56,22 @@ if(fibDOM){
 
 
 
-var gcdDOM = document.getElementById("gcd");
+var gcdDOM = document.getElementById('gcd');
 if(gcdDOM){
-  console.log("hola");
-  gdcDOM.addEventListener('click', function(){
-    var result = gdc(12, 9);
+  //console.log("hola");
+  gcdDOM.addEventListener('click', function(){
+    var result = gcd(12, 9);
     console.log(result);
   });
 };
 
 
 
-var randStudentDOM = document.getElementById("randStudent");
+var randStudentDOM = document.getElementById('randStudent');
 if(randStudentDOM){
-  console.log("hola");
+  //console.log("hola");
   randStudentDOM.addEventListener('click', function(){
-    var result = randStudent();
+    var result = randStudent(list);
     console.log(result);
   });
 };
