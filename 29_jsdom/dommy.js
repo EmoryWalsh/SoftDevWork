@@ -49,6 +49,7 @@ var addItem = function(e){
 var button = document.getElementById("b");
 button.addEventListener('click', addItem)
 
+
 //Fib function
 var fib = function(n){
   if(n < 2){
@@ -59,9 +60,16 @@ var fib = function(n){
   }
 };
 
+var n = 0;
+
 var addFib = function(e){
   console.log(e);
-  //???
+  var list = document.getElementById("fiblist");
+  var item = document.createElement("li");
+  var value = fib(n);
+  item.innerHTML = value;
+  list.appendChild(item);
+  n++;
 }
 
 var addFib2 = function(e){
@@ -74,6 +82,6 @@ fb.addEventListener('click', addFib);
 
 
 //Shows event fields in console
-button.addEventListener('click', function(e){
+//button.addEventListener('click', function(e){
   //console.log(e);
-});
+//});
