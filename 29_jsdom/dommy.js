@@ -5,30 +5,27 @@
 
 //Changes heading
 var changeHeading = function(e, str){
-  console.log(e);
+  //console.log(e);
   var h = document.getElementById("h");
-  if(e.type == 'mouseover'){
-    h.innerHTML = e.srcElement.innerHTML;
-  }
-  else{
-    h.innerHTML = "Hello World!";
-  }
-  console.log(str);
+  h.innerHTML = e.srcElement.innerHTML;
+}
+
+var changeHeadingBack = function(e){
+  var h = document.getElementById("h");
+  h.innerHTML = "Hello World!";
 }
 
 //Removes item from list when clicked
-var removeItem = function(e){
-
+var removeItem = function(e, node){
+  var el = e.srcElement.remove();
 };
 
 //List element and their events
 var lis = document.getElementsByTagName("li");
-console.log(lis);
+
 for(var i=0; i<lis.length; i++){
-  lis[i].addEventListener('mouseover', function(e){
-    changeHeading(e, lis[i]);
-  });
-  lis[i].addEventListener('mouseout', changeHeading)
+  lis[i].addEventListener('mouseover', changeHeading);
+  lis[i].addEventListener('mouseout', changeHeadingBack);
   lis[i].addEventListener('click', removeItem);
 };
 
@@ -39,6 +36,8 @@ var addItem = function(e){
   var value = "WORD"
   item.innerHTML = value;
   list.appendChild(item);
+  //is = document.getElementsByTagName("li");
+  console.log(lis);
 };
 
 var button = document.getElementById("b");
@@ -70,5 +69,5 @@ fb.addEventListener('click', addFib);
 
 //Shows event fields in console
 button.addEventListener('click', function(e){
-  console.log(e);
+  //console.log(e);
 });
