@@ -7,7 +7,7 @@
 var changeHeading = function(e, str){
   //console.log(e);
   var h = document.getElementById("h");
-  h.innerHTML = e.srcElement.innerHTML;
+  h.innerHTML = e.target.innerHTML;
 }
 
 var changeHeadingBack = function(e){
@@ -17,13 +17,16 @@ var changeHeadingBack = function(e){
 
 //Removes item from list when clicked
 var removeItem = function(e, node){
-  var el = e.srcElement.remove();
+  var el = e.target.remove();
+  lis = document.getElementsByTagName("li");
+  console.log(lis);
 };
 
 //List element and their events
 var lis = document.getElementsByTagName("li");
 
 for(var i=0; i<lis.length; i++){
+  console.log(i);
   lis[i].addEventListener('mouseover', changeHeading);
   lis[i].addEventListener('mouseout', changeHeadingBack);
   lis[i].addEventListener('click', removeItem);
@@ -36,7 +39,10 @@ var addItem = function(e){
   var value = "WORD"
   item.innerHTML = value;
   list.appendChild(item);
-  //is = document.getElementsByTagName("li");
+  item.addEventListener('mouseover', changeHeading);
+  item.addEventListener('mouseout', changeHeadingBack);
+  item.addEventListener('click', removeItem);
+  lis = document.getElementsByTagName("li");
   console.log(lis);
 };
 
