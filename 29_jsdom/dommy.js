@@ -19,14 +19,14 @@ var changeHeadingBack = function(e){
 var removeItem = function(e, node){
   var el = e.target.remove();
   lis = document.getElementsByTagName("li");
-  console.log(lis);
+  //console.log(lis);
 };
 
 //List element and their events
 var lis = document.getElementsByTagName("li");
 
 for(var i=0; i<lis.length; i++){
-  console.log(i);
+  //console.log(i);
   lis[i].addEventListener('mouseover', changeHeading);
   lis[i].addEventListener('mouseout', changeHeadingBack);
   lis[i].addEventListener('click', removeItem);
@@ -43,7 +43,7 @@ var addItem = function(e){
   item.addEventListener('mouseout', changeHeadingBack);
   item.addEventListener('click', removeItem);
   lis = document.getElementsByTagName("li");
-  console.log(lis);
+  //console.log(lis);
 };
 
 var button = document.getElementById("b");
@@ -51,6 +51,8 @@ button.addEventListener('click', addItem)
 
 
 //Fib function
+
+//THIS FUNCTION IS NOT NECESSARY
 var fib = function(n){
   if(n < 2){
     return 1;
@@ -63,18 +65,30 @@ var fib = function(n){
 var n = 0;
 
 var addFib = function(e){
-  console.log(e);
+  //console.log(e);
   var list = document.getElementById("fiblist");
   var item = document.createElement("li");
-  var value = fib(n);
+  var value;
+  if(n == 0 || n == 1){
+    value = 1;
+  }
+  else{
+    addFib2();
+    value = fiblist[n];
+  }
   item.innerHTML = value;
   list.appendChild(item);
   n++;
 }
 
+fiblist = [1,1];
+
+//Dynamic Programming for fib
 var addFib2 = function(e){
-  console.log(e);
-  //???
+  //console.log(e);
+  //console.log(fiblist);
+  fibval = fiblist[n-1] + fiblist[n-2];
+  fiblist.push(fibval);
 }
 
 var fb = document.getElementById("fb");
