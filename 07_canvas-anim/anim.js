@@ -7,11 +7,15 @@ var canvas = document.getElementById("playground");
 var ctx = canvas.getContext("2d");
 
 var id = null;
-var radius = 1;
+var radius = 2;
 var direction = "out"; //out or in
+var anim = "off" //on or off
 
 document.getElementById("go").addEventListener("click", () => {
-  window.requestAnimationFrame(circle);
+  if(anim === "off"){
+    circle();
+    anim = "on";
+  }
 });
 
 function circle(){
@@ -23,10 +27,10 @@ function circle(){
     direction = "out";
   }
   if(direction === "out"){
-    radius++;
+    radius += 2;
   }
   else if(direction === "in"){
-    radius--;
+    radius -= 2;
   }
   //console.log(radius)
   ctx.fillStyle = "blue";
@@ -40,5 +44,6 @@ function circle(){
 
 document.getElementById("stop").addEventListener("click", () => {
   window.cancelAnimationFrame(id);
+  anim = "off";
   id = null;
 });
