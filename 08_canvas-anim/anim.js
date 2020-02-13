@@ -9,8 +9,12 @@ var ctx = canvas.getContext("2d");
 var id = null;
 var radius = 2;
 var direction = "out"; //out or in
-var circAnim = "off" //on or off
-var dvdAnim = "off" //on or off
+var circAnim = "off"; //on or off
+var dvdAnim = "off"; //on or off
+var x = 0;
+var y = 0;
+var dx = 2;
+var dy = 2;
 
 var logo = new Image();
 logo.src = "logo_dvd.jpg"
@@ -21,16 +25,6 @@ document.getElementById("circle").addEventListener("click", () => {
     circle();
     circAnim = "on";
   }
-});
-
-document.getElementById("dvd").addEventListener("click", () => {
-  ctx.clearRect(0, 0, 600, 600);
-  window.cancelAnimationFrame(id);
-  circAnim = "off";
-  dvdAnim = "off"
-  id = null;
-  ctx.drawImage(logo, 0, 0);
-
 });
 
 function circle(){
@@ -56,6 +50,34 @@ function circle(){
   id = window.requestAnimationFrame(circle);
   }
 };
+
+function randXY(){
+  x = Math.random() * (600 - logo.width/5);
+  y = Math.random() * (600 - logo.height/5);
+}
+
+document.getElementById("dvd").addEventListener("click", () => {
+  window.cancelAnimationFrame(id);
+  ctx.clearRect(0, 0, 600, 600);
+  circAnim = "off";
+  dvdAnim = "on"
+  id = null;
+  randXY();
+  moveDvd();
+});
+
+function moveDvd(){
+  ctx.drawImage(logo, x, y, logo.width/5, logo.height/5);
+  if(x + 2 > 600 - logo.width/5 || x + 2 < 0){
+    dx *= -1;
+  }
+  if(y + 2 > 600 - logo.height/5 || y + 2 < 0){
+    dy *= -1;
+  }
+  x += dx;
+  y += dy;
+  id = window.requestAnimationFrame(moveDvd);
+}
 
 document.getElementById("stop").addEventListener("click", () => {
   window.cancelAnimationFrame(id);
