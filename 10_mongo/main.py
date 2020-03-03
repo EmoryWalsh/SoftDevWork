@@ -28,6 +28,7 @@ if(collection.count()==0):
 # get all the names of US representatives in a certain party
 def getParty(fname):
     data = collection.find({"firstname": fname})
+    print(data)
     for people in data:
         print("HdI")
         for key, value in people.items():
@@ -58,7 +59,7 @@ def getOffice(fname, lname):
 
 
 # TEST
-print(getParty("Gregory"))
-print("HI")#findPerson("Kevin", "Brady")
+print(getParty("Dan"))
+#findPerson("Kevin", "Brady")
 #getPhoneNum("Jim", "Cooper")
 #getOffice("Sheila", "Jackson Lee")
