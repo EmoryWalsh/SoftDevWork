@@ -10,7 +10,7 @@ Hyperlink: https://www.govtrack.us/api/v2/role?current=true&role_type=representa
 Import mechanism summary: By importing pymongo, json, and pprint, we gain access to the codes in those modules. If there are no collections present in our database, we read from the json file and load them into a collection.
 """
 
-import pymongo, json, pprint
+import pymongo, json
 from bson.json_util import loads
 from pymongo import MongoClient
 
@@ -26,18 +26,19 @@ if(collection.count()==0):
         collection.insert_one(loads(line))
 
 # get all the names of US representatives in a certain party
-def getParty(party):
-    data = collection.find({"party": party})
+def getParty(fname):
+    data = collection.find({"firstname": fname})
     for people in data:
+        print("HdI")
         for key, value in people.items():
-            if key == "name":
-                print("{name: %s}" % value)
+            if key == "party":
+                return("{party: %s}" % value)
 
 # get the details of a specific US representative
-def findPerson(fname, lname):
-    data = collection.find({"firstname": fname, "lastname": lname})
-    for item in data:
-        pprint.pprint(item)
+# def findPerson(fname, lname):
+#    data = collection.find({"firstname": fname, "lastname": lname})
+#    for item in data:
+#        pprint.pprint(item)
 
 # get the phone number of a US representative
 def getPhoneNum(fname, lname):
@@ -57,7 +58,7 @@ def getOffice(fname, lname):
 
 
 # TEST
-getParty("Democrat")
-findPerson("Kevin", "Brady")
-getPhoneNum("Jim", "Cooper")
-getOffice("Sheila", "Jackson Lee")
+print(getParty("Gregory"))
+print("HI")#findPerson("Kevin", "Brady")
+#getPhoneNum("Jim", "Cooper")
+#getOffice("Sheila", "Jackson Lee")
