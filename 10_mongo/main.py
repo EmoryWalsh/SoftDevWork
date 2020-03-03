@@ -13,7 +13,7 @@ collection = db.movies
 
 #read data into db
 if(collection.count() == 0):
-    file = open("data.json", "r")
+    file = open("reps.json", "r")
     data = file.readlines()
     for line in data:
         collection.insert_one(loads(line))
