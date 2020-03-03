@@ -1,12 +1,4 @@
-{"meta": {
-  "limit": 438,
-  "offset": 0,
-  "total_count": 436
- },
- "objects": [
-  {
-   "caucus": null,
-   "congress_numbers": [
+{"meta": {"limit": 438,"offset": 0,"total_count": 436},"objects": [{"caucus": null,"congress_numbers": [
     115,
     116
    ],
@@ -19880,10 +19872,4 @@
    "senator_class": null,
    "senator_rank": null,
    "startdate": "2019-09-17",
-   "state": "NC",
-   "title": "Rep.",
-   "title_long": "Representative",
-   "website": "https://gregmurphy.house.gov/"
-  }
- ]
-}
+   "state": "NC","title": "Rep.","title_long": "Representative","website": "https://gregmurphy.house.gov/"}]}
