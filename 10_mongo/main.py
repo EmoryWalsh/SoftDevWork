@@ -13,7 +13,7 @@ collection = db.representatives
 
 #read data into db
 if(collection.count()==0):
-    file = open("primer-dataset.json", "r")
+    file = open("reps.json", "r")
     content = file.readlines()
     for line in content:
         collection.insert_one(loads(line))
