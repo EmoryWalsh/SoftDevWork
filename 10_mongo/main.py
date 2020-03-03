@@ -17,3 +17,12 @@ if(collection.count()==0):
     content = file.readlines()
     for line in content:
         collection.insert_one(loads(line))
+
+def getGender(gender):
+    data = collection.find({"gender_label": gender})
+     for item in data:
+        for key, value in item.items():
+            if key == "name":
+                print("{name: %s}" % value)
+
+getGender("Male")
