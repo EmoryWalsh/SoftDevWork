@@ -7,7 +7,7 @@
 Dataset: Current US Representatives
 Description: Contains data on all current US representatives including personal information and political background
 Hyperlink: https://www.govtrack.us/api/v2/role?current=true&role_type=representative&limit=438
-Import mechanism summary: By importing pymongo, json, and pprint, we gain access to the codes in those modules.
+Import mechanism summary: By importing pymongo, json, and pprint, we gain access to the codes in those modules. If there are no collections present in our database, we read from the json file and load them into a collection.
 """
 
 import pymongo, json, pprint
