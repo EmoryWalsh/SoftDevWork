@@ -43,7 +43,7 @@ def socialmedia(lname):
     return collection.find({"person.lastname" : lname}, {"person.twitterid" : 1, "person.youtubeid" : 1})
 
 def birthday(lname):
-    return collection.find({"person.lastname" : lname}, {"person.birthday" : 1)
+    return collection.find({"person.lastname" : lname}, {"person.birthday" : 1})
 
 def printer(data):
     for item in data:
