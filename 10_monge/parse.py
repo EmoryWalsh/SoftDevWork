@@ -34,7 +34,7 @@ def party(party):
     return collection.find({"party" : party}, {"person.name" : 1})
 
 def website(lname):
-    return collection.find({"person.firstname" : fname}, {"person.name" : 1, "website" : 1})
+    return collection.find({"person.firstname" : lname}, {"person.name" : 1, "website" : 1})
 
 def description(lname):
     return collection.find({"person.lastname" : lname}, {"person.name" : 1, "description" : 1})
