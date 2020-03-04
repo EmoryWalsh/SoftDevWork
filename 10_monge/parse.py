@@ -4,44 +4,40 @@ from pymongo import MongoClient
 
 client = MongoClient()
 db = client.computers
-collection = db.senators
 
 if(collection.count()==0):
-    file = open("data.json", "r")
+    collection = db.senators
+    file = open("senators", "r")
     content = loads(file.read())["objects"]
     for line in content:
         collection.insert_one(line)
 
-def find_gender(gender):
-    return collection.find({"person.gender" : gender}, {"_id" : 0, "person.name" : 1})
+def ender(gender):
+    return senators.find({"person.gender" : gender}, {"person.name" : 1})
 
-def find_state(state):
-    return collection.find({"state" : state}, {"_id" : 0, "person.name" : 1})
+def state(state):
+    return senators.find({"state" : state}, {"person.name" : 1})
 
-def find_party(party):
-    return collection.find({"party" : party}, {"_id" : 0, "person.name" : 1})
+def party(party):
+    return senators.find({"party" : party}, {"person.name" : 1})
 
-def find_website(firstname):
-    return collection.find({"person.firstname" : firstname}, {"_id" : 0, "person.name" : 1, "website" : 1})
+def website(fname):
+    return senators.find({"person.firstname" : fname}, {"person.name" : 1, "website" : 1})
 
-def find_description(lastname):
-    return collection.find({"person.lastname" : lastname}, {"_id" : 0, "person.name" : 1, "description" : 1})
+def description(lname):
+    return senators.find({"person.lastname" : lname}, {"person.name" : 1, "description" : 1})
 
+def printer(data):
+    for answer in data:
+        print(item[person])
 
-
-
-print("-----FINDING ALL SENATORS IN NY-----")
-for item in find_state("NY"):
-    print(item["person"])
-
-print("-----FINDING ALL DEMOCRATIC SENATORS-----")
-for item in find_party("Democrat"):
-    print(item["person"])
-
-print("----FINDING ALL FEMALE SENATORS-----")
-for item in find_gender("female"):
-    print(item["person"])
-
-print("-----FINDING WEBSITE OF SENATORS WHOSE FIRST NAME IS KEVIN")
-for item in find_website("kevin"):
-    print(item["person"])
+#Male representatives
+printer(gender("male"))
+#Democrats
+printer(party("Democrat"))
+#ME senators
+printer(state("ME"))
+#Elizabeth's website
+printer(website("Elizabeth"))
+#Amy Klobuchar description
+printer(description("Klobuchar"))
