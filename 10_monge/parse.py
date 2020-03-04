@@ -33,11 +33,17 @@ def state(state):
 def party(party):
     return collection.find({"party" : party}, {"person.name" : 1})
 
-def website(fname):
+def website(lname):
     return collection.find({"person.firstname" : fname}, {"person.name" : 1, "website" : 1})
 
 def description(lname):
     return collection.find({"person.lastname" : lname}, {"person.name" : 1, "description" : 1})
+
+def socialmedia(lname):
+    return collection.find({"person.lastname" : lname}, "person.twitterid" : 1, "person.youtubeid" : 1})
+
+def birthday(lname):
+    return collection.find({"person.lastname" : lname}, "person.birthday" : 1)
 
 def printer(data):
     for item in data:
@@ -49,7 +55,10 @@ print("\nDemocrats")
 printer(party("Democrat"))
 print("\nME senators")
 printer(state("ME"))
-print("\nElizabeth's website")
-printer(website("Elizabeth"))
+print("\nElizabeth Warren's website")
+printer(website("Warren"))
 print("\nAmy Klobuchar description")
 printer(description("Klobuchar"))
+print("\nKevin Cramer's social media")
+printer(socialmedia("Cramer"))
+print("\nMartha McSally birthday")
