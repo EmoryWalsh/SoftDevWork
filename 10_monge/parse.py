@@ -1,3 +1,15 @@
+#Emory Walsh & Leia Park
+#SoftDev1 pd9
+#K10 -- Import/Export Bank
+#2020-03-04
+
+"""
+Dataset: Current US Senators
+Description: Contains data on all current US senators including personal information and political background
+Hyperlink: https://www.govtrack.us/api/v2/role?current=true&role_type=senator
+Import mechanism summary: By importing pymongo, json, and pprint, we gain access to the codes in those modules. If there are no collections present in our database, we read from the json file and load them into a collection.
+"""
+
 from bson.json_util imfrom bson.json_util import loads
 import pymongo
 from pymongo import MongoClient
@@ -31,13 +43,13 @@ def printer(data):
     for item in data:
         print(item["person"])
 
-print("Male representatives\n")
+print("\nMale representatives")
 printer(gender("male"))
-print("Democrats\n")
+print("\nDemocrats")
 printer(party("Democrat"))
-print("ME senators\n")
+print("\nME senators")
 printer(state("ME"))
-print("Elizabeth's website\n")
+print("\nElizabeth's website")
 printer(website("Elizabeth"))
-print("Amy Klobuchar description\n")
+print("\nAmy Klobuchar description")
 printer(description("Klobuchar"))
