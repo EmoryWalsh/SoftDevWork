@@ -4,28 +4,28 @@ from pymongo import MongoClient
 
 client = MongoClient()
 db = client.computers
+collection = db.senators
 
 if(collection.count()==0):
-    collection = db.senators
-    file = open("senators", "r")
+    file = open("data.json", "r")
     content = loads(file.read())["objects"]
     for line in content:
         collection.insert_one(line)
 
 def find_gender(gender):
-    return senators.find({"person.gender" : gender}, {"_id" : 0, "person.name" : 1})
+    return collection.find({"person.gender" : gender}, {"_id" : 0, "person.name" : 1})
 
 def find_state(state):
-    return senators.find({"state" : state}, {"_id" : 0, "person.name" : 1})
+    return collection.find({"state" : state}, {"_id" : 0, "person.name" : 1})
 
 def find_party(party):
-    return senators.find({"party" : party}, {"_id" : 0, "person.name" : 1})
+    return collection.find({"party" : party}, {"_id" : 0, "person.name" : 1})
 
 def find_website(firstname):
-    return senators.find({"person.firstname" : firstname}, {"_id" : 0, "person.name" : 1, "website" : 1})
+    return collection.find({"person.firstname" : firstname}, {"_id" : 0, "person.name" : 1, "website" : 1})
 
 def find_description(lastname):
-    return senators.find({"person.lastname" : lastname}, {"_id" : 0, "person.name" : 1, "description" : 1})
+    return collection.find({"person.lastname" : lastname}, {"_id" : 0, "person.name" : 1, "description" : 1})
 
 
 
