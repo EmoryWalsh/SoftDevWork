@@ -10,7 +10,7 @@ Hyperlink: https://www.govtrack.us/api/v2/role?current=true&role_type=senator
 Import mechanism summary: By importing pymongo, json, and pprint, we gain access to the codes in those modules. If there are no collections present in our database, we read from the json file and load them into a collection.
 """
 
-from bson.json_util imfrom bson.json_util import loads
+from bson.json_util import loads
 import pymongo
 from pymongo import MongoClient
 
