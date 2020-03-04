@@ -1,4 +1,4 @@
-from bson.json_util import loads
+from bson.json_util imfrom bson.json_util import loads
 import pymongo
 from pymongo import MongoClient
 
@@ -31,13 +31,13 @@ def printer(data):
     for item in data:
         print(item["person"])
 
-#Male representatives
+print("Male representatives\n")
 printer(gender("male"))
-#Democrats
+print("Democrats\n")
 printer(party("Democrat"))
-#ME senators
+print("ME senators\n")
 printer(state("ME"))
-#Elizabeth's website
+print("Elizabeth's website\n")
 printer(website("Elizabeth"))
-#Amy Klobuchar description
+print("Amy Klobuchar description\n")
 printer(description("Klobuchar"))
