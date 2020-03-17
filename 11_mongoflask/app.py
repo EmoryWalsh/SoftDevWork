@@ -30,7 +30,7 @@ def setup_senators():
         for line in content:
             senators_col.insert_one(line)
 
-setup_opioids()
+#setup_opioids()
 setup_senators()
 
 @app.route("/")
