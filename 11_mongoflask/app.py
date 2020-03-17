@@ -60,8 +60,13 @@ def get_people(data):
 
 def get_info(senator):
     out = []
-    out.append(description(senator))
-    out.append(website(senator))
+    des = description(senator)
+    site = website(senator)
+    for item in des:
+        out.append(item["description"])
+    for item in site:
+        out.append(item)
+    print(out)
     return out
 
 @app.route("/form_data",methods=["POST"])
@@ -76,6 +81,7 @@ def form():
     if "party" in request.form:
         return render_template("index.html",disp=True,results=get_people(party(request.form["party"])))
     if "senator" in request.form:
+        res = get_info(request.form['senator'])
         return render_template("index.html",disp=True,results=get_info(request.form['senator']))
 
     return request.form
