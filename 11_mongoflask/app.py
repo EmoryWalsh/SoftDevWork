@@ -44,8 +44,8 @@ def party(party):
     return senators_col.find({"party" : party}, {"person.name" : 1})
 
 # gets the website of a specific US senator
-def website(fname):
-    return senators_col.find({"person.firstname" : fname}, {"person.name" : 1, "website" : 1})
+def website(lname):
+    return senators_col.find({"person.lastname" : lname}, {"person.name" : 1, "website" : 1})
 
 # gets all related information of a specific US senator
 def description(lname):
@@ -65,8 +65,8 @@ def get_info(senator):
     for item in des:
         out.append(item["description"])
     for item in site:
-        out.append(item)
-    print(out)
+        out.append(item["website"])
+    #print(out)
     return out
 
 @app.route("/form_data",methods=["POST"])
@@ -74,7 +74,6 @@ def form():
     if "gender" in request.form:
         res = gender(request.form['gender'])
         ppl = get_people(res)
-        print(ppl)
         return render_template("index.html",disp=True,results=ppl)
     if "state" in request.form:
         return render_template("index.html",disp=True,results=get_people(state(request.form["state"])))
