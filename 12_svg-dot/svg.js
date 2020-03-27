@@ -1,39 +1,24 @@
-//Emory Walsh
+//Emory Walsh & Sophie Nichol
 //Softdev pd09
-//K06 -- Dot Dot Dot
-//2020-02-12
+//K12 -- Connect The Dots
+//2020-03-30
 
-var canvas = document.getElementById("playground");
+var svg = document.getElementById("vimage");
 
-//mode either "rect" or "dot"
-var curmode = "dot";
-
-lx = null
-ly = null
-
-
+svg.addEventListener("click", (e) => {
+  var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  x = e.pageX-3;
+  y = e.pageY-20;
+  console.log(x)
+  circle.setAttributeNS(null, 'cx', x);
+  circle.setAttributeNS(null, 'cy', y);
+  circle.setAttributeNS(null, 'r', 5);
+  circle.setAttributeNS(null, 'style', 'fill: none; stroke: blue; stroke-width: 1px;' );
+  svg.appendChild(circle);
+});
 
 document.getElementById("clear").addEventListener("click", () => {
-  //Emory Walsh
-  //Softdev pd09
-  //K06 -- Dot Dot Dot
-  //2020-02-12
-
-  var svg = document.getElementById("vimage");
-
-  //mode either "rect" or "dot"
-  var curmode = "dot";
-
-  lx = null
-  ly = null
-
-  svg.addEventListener("click", (e) => {
-      console.log("here");
-  });
-
-  document.getElementById("clear").addEventListener("click", () => {
-    while (svg.lastChild) {
-      svg.removeChild(svg.lastChild);
-    }
-  });
+  while (svg.lastChild) {
+    svg.removeChild(svg.lastChild);
+  }
 });
