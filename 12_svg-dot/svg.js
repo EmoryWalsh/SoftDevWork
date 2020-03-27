@@ -9,7 +9,7 @@ lx = null
 ly = null
 
 svg.addEventListener("click", (e) => {
-  x = e.pageX-3;
+  x = e.pageX-5;
   y = e.pageY-20;
 
   var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -37,4 +37,6 @@ document.getElementById("clear").addEventListener("click", () => {
   while (svg.lastChild) {
     svg.removeChild(svg.lastChild);
   }
+  lx = null
+  ly = null
 });
