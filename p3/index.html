@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+	  Kiran Vuksanaj and Emory Walsh
+	  Softdev2 pd9
+	  P03 - Website form of Graph Database Presentation
+	  03-30-2020
+	-->
+  <!--
+	  CREDIT TO: Skeleton (getskeleton.com) for the html and css framework we use to allow for the ease of organization of data so that HTML could get out of the way and we could present our information simply.
+	-->
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -48,7 +57,8 @@
 	  </div>
 	</div>
 	<div class="row">
-	  <p>According to the Oxford dictionary, a graph is a diagram showing the relation between variable quantities. As we know, there are many different types of graphs, such as bar graphs, line graphs, histograms, and pie charts.</p>
+	  <p>For the purpose of this guide, a graph is <strong>not</strong> what you likely have in mind as a graph. As opposed to the typical idea of bar graphs or pie charts, we are talking about a simply a collection of points connected to one another. The points, which can contain information, are known as <strong>nodes</strong>, and the connections between them are known as <strong>edges.</strong> The field of mathematics known as <strong>graph theory</strong> studies these graphs and algorithms and theorems that are helpful in traversing the data contained within them.
+	  </p>
 	</div>
 
 	<div class="row">
@@ -114,7 +124,12 @@
 	  </div>
 	</div>
 	<div class="row">
-	  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	  <p>
+		The mathematical field of graph theory has produced a number of algorithms that are immensely helpful when attempting to quickly traverse a graph database. The most famous of these is <strong>Dijkstra's Algorithm</strong> Which can find the shortest path connecting two nodes in a graph, using some sort of contained data about the "length" of each edge. In a similar vein, the <strong>Bellman-Ford Algorithm</strong> finds and stores the shortest path from one node in a graph to any other node connected to it.
+	  </p>
+	  <p>
+		While the mathematics behind these algorithms is extremely interesting, we won't explain that here. We choose not to because of the fact that in order to use a graph database, you don't need to know how these algorithms work. These algorithms are built into graph database systems, under names like 'shortest-path', so that you can use the full potential of the graph database without being restrained by the details of algorithms.
+	  </p>
 	</div>
 
 	<div class="row">
@@ -126,9 +141,12 @@
 	  </div>
 	</div>
 	<div class="row">
-	  <p>Lorem ipsum<a> dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	  <p>
+		<strong>neo4j</strong> is one of the most well established and widely used services for building a graph database. It is free to use, has a great number of tutorials on their website to help understand the basics of graph theory and get into building your own graph database. There are paid versions available for larger scale operations by large companies, but because there is a free version available, you can play around with the concepts of graph theory on your own.
+	  </p>
+	  <p>
+		neo4j uses a language of their own creation, known as <strong>Cypher</strong>, to allow you to interact with your graph database. Without getting too much into the details, its syntax is based loosely on ASCII art representing the edges with dashes and arrows and nodes with brackets. Graph algorithms are built into it with simple command syntaxes. Rather than going in depth with a tutorial here, we recommend you check out the tutorials provided by <a href="https://neo4j.com/">neo4j</a>, which both help develop an understanding of their own language, as well as develop a further understanding of the concepts behind graph databases.
 	</div>
-<!-- for reference sake, neo4j green is 63B345 -->
 	<div class="row">
 	  <div class="one column">
 		<p>7</p>
