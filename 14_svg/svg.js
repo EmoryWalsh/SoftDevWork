@@ -1,7 +1,7 @@
-//Emory Walsh & Sophie Nichol
+//Emory Walsh
 //Softdev pd09
-//K12 -- Connect The Dots
-//2020-03-30
+//K14 -- Ask Circles [Change || Die] While Moving, etc.
+//2020-04-01
 
 var svg = document.getElementById("vimage");
 
