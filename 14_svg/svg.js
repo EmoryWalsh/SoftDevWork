@@ -1,4 +1,4 @@
-//Emory Walsh
+//Emory Walsh & Justin Shaw
 //Softdev pd09
 //K14 -- Ask Circles [Change || Die] While Moving, etc.
 //2020-04-01
