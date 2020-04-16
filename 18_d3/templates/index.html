@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+  <style>
+    #container {
+      display: flex;
+      justify-content: center;
+    }
+
+    button {
+      width: 100%;
+
+    }
+
+    #start {
+      background-color: blue;
+    }
+
+    #end {
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+<h1>Title goes here</h1>
+<p>
+  Emory Walsh & Sophie Nichol <br/>
+  SoftDev pd9 <br/>
+  K18 -- Come Up For Air <br/>
+  2020-04-21 <br/>
+</p>
+<button id="start">Start!</button>
+<button id="end">Reset</button>
+<div id="container"></div>
+
+<script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
