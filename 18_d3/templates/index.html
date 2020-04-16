@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>title</title>
-  <style>
-    #container {
-      display: flex;
-      justify-content: center;
-    }
+  <head>
+    <meta charset="UTF-8">
+    <title>2010 SAT Data</title>
+    <style>
+      #container {
+        display: flex;
+        justify-content: center;
+      }
 
-    button {
-      width: 100%;
+      button {
+        width: 100%;
 
-    }
+      }
 
-    #start {
-      background-color: blue;
-    }
+      #start {
+        background-color: blue;
+      }
 
-    #end {
-      background-color: blue;
-    }
-  </style>
-</head>
-<body>
-<h1>Title goes here</h1>
-<p>
-  Emory Walsh & Sophie Nichol <br/>
-  SoftDev pd9 <br/>
-  K18 -- Come Up For Air <br/>
-  2020-04-21 <br/>
-</p>
-<button id="start">Start!</button>
-<button id="end">Reset</button>
-<div id="container"></div>
+      #end {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>2010 New York SAT Data</h1>
+    <p>
+      Emory Walsh & Sophie Nichol <br/>
+      SoftDev pd9 <br/>
+      K18 -- Come Up For Air <br/>
+      2020-04-21 <br/>
+    </p>
+    <button id="start">Start!</button>
+    <button id="end">Reset</button>
 
-<script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
+    <div id="data_viz">
+    </div>
+
+    <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="{{ url_for('static', filename='stuff.js') }}"></script>
+  </body>
 </html>
