@@ -5,67 +5,94 @@
  * 2020-04-21
  */
 
- // set the dimensions and margins of the graph
- var margin = {top: 10, right: 30, bottom: 30, left: 40},
-     width = 460 - margin.left - margin.right,
-     height = 400 - margin.top - margin.bottom;
+const width = 800;
+const height = 500;
 
- // append the svg object to the body of the page
- var svg = d3.select("#data_viz")
-   .append("svg")
-     .attr("width", width + margin.left + margin.right)
-     .attr("height", height + margin.top + margin.bottom)
-   .append("g")
-     .attr("transform",
-           "translate(" + margin.left + "," + margin.top + ")");
+ const graph = d3.select("#container")
+     .append("svg")
+     .attr("width", width + 300)
+     .attr("height", height + 300)
+     .append("g")  // graph will be located inside of this (so we can see the y-axis description)
+     .attr("transform", "translate(100, 100)");
 
- // get the data
- d3.csv("/data.csv", function(data) {
+d3.select("#start")
+  .on("click", () => {
+      //console.log("start")
 
-   // X axis: scale and draw:
-   var x = d3.scaleLinear()
-       .domain([0, 1000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
-       .range([0, width]);
-   svg.append("g")
-       .attr("transform", "translate(0," + height + ")")
-       .call(d3.axisBottom(x));
+      makeGraph(data)
+      });
 
-   // set the parameters for the histogram
-   var histogram = d3.histogram()
-       .value(function(d) { return d.price; })   // I need to give the vector of value
-       .domain(x.domain())  // then the domain of the graphic
-       .thresholds(x.ticks(70)); // then the numbers of bins
+function makeGraph(data){
+  data_viz.innerHTML = ""
+  // set the dimensions and margins of the graph
+  var margin = {top: 10, right: 30, bottom: 30, left: 40},
+      width = 460 - margin.left - margin.right,
+      height = 400 - margin.top - margin.bottom;
 
-   // And apply this function to data to get the bins
-   var bins = histogram(data);
+  // append the svg object to the body of the page
+  var svg = d3.select("#data_viz")
+    .append("svg")
 
-   // Y axis: scale and draw:
-   var y = d3.scaleLinear()
-       .range([height, 0]);
-       y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
-   svg.append("g")
-       .call(d3.axisLeft(y));
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
 
-   // append the bar rectangles to the svg element
-   svg.selectAll("rect")
-       .data(bins)
-       .enter()
-       .append("rect")
-         .attr("x", 1)
-         .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
-         .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
-         .attr("height", function(d) { return height - y(d.length); })
-         .style("fill", "blue")
+    // X axis: scale and draw:
+    var x = d3.scaleLinear()
+        .domain([0, 1000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
+        .range([0, width]);
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
 
- });
+    // set the parameters for the histogram
+    var histogram = d3.histogram()
+        .value(function(d) { return d.price; })   // I need to give the vector of value
+        .domain(x.domain())  // then the domain of the graphic
+        .thresholds(x.ticks(70)); // then the numbers of bins
+
+    // And apply this function to data to get the bins
+    var bins = histogram(data);
+
+    // Y axis: scale and draw:
+    var y = d3.scaleLinear()
+        .range([height, 0]);
+        y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+    // append the bar rectangles to the svg element
+    svg.selectAll("rect")
+        .data(bins)
+        .enter()
+        .append("rect")
+          .attr("x", 1)
+          .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+          .attr("width", function(d) { return 100 ; })
+          .attr("height", function(d) { return height - y(d.length); })
+          .style("fill", "#69b3a2")
+}
 
 
- d3.select("#start")
-    .on("click", () => {
-        //???
+
+  fetch("/data")
+    .then((response) => response.json())
+    .then((entries) => {
+      //console.log(entries)
+
+      // update global variable
+      data = entries;
+
+    })
+    .catch((e) => {
+        alert("Failed to get data from the server. See console for more information");
+        console.log(e)
     });
+
 
 d3.select("#end")
-    .on("click", () => {
-        //???
-    });
+  .on("click", () => {
+      console.log("stop")
+  });
