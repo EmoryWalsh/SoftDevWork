@@ -8,19 +8,23 @@
 const width = 800;
 const height = 500;
 
- const graph = d3.select("#container")
-     .append("svg")
-     .attr("width", width + 300)
-     .attr("height", height + 300)
-     .append("g")  // graph will be located inside of this (so we can see the y-axis description)
-     .attr("transform", "translate(100, 100)");
+function reading(origData){
+  buckets = [0, 0, 0, 0, 0, 0, 0, 0]
+  for(let step = 0; step < origData.length; step++){
+    bucket = Math.floor(origData[step]["reading"] / 100)
+    //console.log(bucket)
+    buckets[bucket] += 1
+  }
+  //console.log(buckets)
+  return buckets
+}
 
 d3.select("#start")
   .on("click", () => {
       //console.log("start")
-
-      makeGraph(data)
-      });
+      readingData = reading(data)
+      makeGraph(readingData)
+  });
 
 function makeGraph(data){
   data_viz.innerHTML = ""
@@ -32,7 +36,6 @@ function makeGraph(data){
   // append the svg object to the body of the page
   var svg = d3.select("#data_viz")
     .append("svg")
-
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -41,7 +44,7 @@ function makeGraph(data){
 
     // X axis: scale and draw:
     var x = d3.scaleLinear()
-        .domain([0, 1000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
+        .domain([0, 800])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
         .range([0, width]);
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -51,15 +54,17 @@ function makeGraph(data){
     var histogram = d3.histogram()
         .value(function(d) { return d.price; })   // I need to give the vector of value
         .domain(x.domain())  // then the domain of the graphic
-        .thresholds(x.ticks(70)); // then the numbers of bins
+        .thresholds(x.ticks(8)); // then the numbers of bins
 
     // And apply this function to data to get the bins
     var bins = histogram(data);
+    console.log(data)
+    console.log(bins)
 
     // Y axis: scale and draw:
     var y = d3.scaleLinear()
         .range([height, 0]);
-        y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+        y.domain([0, 300]);   // d3.hist has to be called before the Y axis obviously
     svg.append("g")
         .call(d3.axisLeft(y));
 
@@ -69,9 +74,9 @@ function makeGraph(data){
         .enter()
         .append("rect")
           .attr("x", 1)
-          .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+          .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length - 20) + ")"; })
           .attr("width", function(d) { return 100 ; })
-          .attr("height", function(d) { return height - y(d.length); })
+          .attr("height", function(d) )
           .style("fill", "#69b3a2")
 }
 
