@@ -15,7 +15,7 @@ def data():
         # skip the first row, which is the header row
         next(reader)
         for entry in reader:
-            data.append({'reading': entry[3], 'math': int(entry[4]), 'writing': entry[5]})
+            data.append({'school': entry[1], 'testtakers': entry[2], 'reading': entry[3], 'math': int(entry[4]), 'writing': entry[5]})
 
     return jsonify(data)
 
