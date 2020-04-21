@@ -80,8 +80,7 @@
    var bins = histogram(data);
 
    // Add the svg element to the body and set the dimensions and margins of the graph
-   var svg = d3
-     .select("body")
+   var svg = d3.select("#data_viz")
      .append("svg")
      .attr("width", width + margin.left + margin.right)
      .attr("height", height + margin.top + margin.bottom)
@@ -96,12 +95,8 @@
    var y = d3
      .scaleLinear()
      .range([height, 0])
-     .domain([
-       0,
-       d3.max(bins, function(d) {
-         return d.length;
-       })
-     ]);
+     .domain([0, 300]
+    );
 
    svg.append("g").call(d3.axisLeft(y));
 
