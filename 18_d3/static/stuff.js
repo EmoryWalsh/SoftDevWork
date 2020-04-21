@@ -52,7 +52,7 @@
  }
 
  function makeGraph(data){
-   console.log(data)
+   //console.log(data)
    data_viz.innerHTML = ""
 
    min = d3.min(data);
